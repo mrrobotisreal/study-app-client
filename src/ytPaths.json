@@ -1,0 +1,94 @@
+{
+  "playlists": [
+    {
+      "name": "Russian phrases",
+      "path": "https://www.youtube.com/watch?v=tiPdJC4QjU8&list=PLdTzP9CpAPt7a2IFbWjyQR9A44OoYonAf",
+      "videos": [
+        {
+          "name": "Russian phrases. ✔️Извини́те, где такси? ✔️Извини́те, где ста́нция метро́?✔️Извини́те, где туале́т?",
+          "path": "https://www.youtube.com/embed/tiPdJC4QjU8"
+        },
+        {
+          "name": "Let's learn some Russian polite words! / Study Russian",
+          "path": "https://www.youtube.com/embed/yfen_1jdZQI"
+        },
+        {
+          "name": "Russian polite words / learn how to say please, thanks, you're welcome",
+          "path": "https://www.youtube.com/embed/k3pQIL2DSLc"
+        },
+        {
+          "name": "How do you say “hi” in Russian? Get your beautiful Russian accent!",
+          "path": "https://www.youtube.com/embed/jICg1jBoHMY"
+        },
+        {
+          "name": "How do we say “hi” in Russian? Learn the correct pronunciation!",
+          "path": "https://www.youtube.com/embed/m9yoYEYYER8"
+        },
+        {
+          "name": "🙋“Speak Russian!” closed club - Sneak Peak - Talk about Weather in Russian / русский язык",
+          "path": "https://www.youtube.com/embed/4SLKfrlwg5M"
+        }
+      ]
+    },
+    {
+      "name": "Russian handwriting",
+      "path": "https://www.youtube.com/watch?v=jCDmuwkXhik&list=PLdTzP9CpAPt5RnkMb1ogmevGB1g_5EfB5",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "name": "Russian lessons / courses",
+      "path": "https://www.youtube.com/watch?v=Kpgt6ZYBDH4&list=PLdTzP9CpAPt6hJ69e0ruSe3YdXgD2bUJO",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "name": "Russian pronunciation / 300 nouns",
+      "path": "https://www.youtube.com/watch?v=RXwBfdQkgCg&list=PLdTzP9CpAPt6KYqHM_stMmUtYYzZGuaz-",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "name": "Russian culture / Russian lessons",
+      "path": "https://www.youtube.com/watch?v=QePh_B42oGQ&list=PLdTzP9CpAPt4uiiezFFczNDTryM13g6nJ",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "name": "Russian pronunciation / Reading certain words",
+      "path": "https://www.youtube.com/watch?v=4_yRiOCafXY&list=PLdTzP9CpAPt6v2-OPE3pE5W_W-XRvfvQ3",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "name": "For posts and articles",
+      "path": "https://www.youtube.com/watch?v=VqpH0-QpwiA&list=PLdTzP9CpAPt6d7FAVga10QOXqtjfM-xBx",
+      "videos": [
+        {
+          "name": "",
+          "path": ""
+        }
+      ]
+    }
+  ]
+}
