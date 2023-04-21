@@ -18,6 +18,7 @@ export default function ErrorPage() {
       <p>
         <b><i>{error.statusText || error.message}</i></b>
       </p>
+      <p>{error.stack}</p>
     </Container>
   )
 }

@@ -27,7 +27,7 @@ export default function Chat() {
               description={
                 <FormattedMessage
                   id="chat.header.description"
-                  defaultMessage="Choose a friend from the autosuggest, then you can optionally add a header to your message in the top input, and write your message textarea below that input."
+                  defaultMessage="Choose a friend from the autosuggest, then you can optionally add a header to your message in the top input, and write your message in the textarea below that input."
                   description=""
                 />
               }

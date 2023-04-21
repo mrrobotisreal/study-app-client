@@ -16,9 +16,11 @@ import Scheduler from './Scheduler';
 import Stats from './Stats';
 import Docs from './Docs';
 import Dictionary from './Dictionary';
+import Translator from './Translator';
 import ViewFlashcardTimes from './ViewFlashcardTimes';
 import ViewMessages from './ViewMessages';
 import "@cloudscape-design/global-styles/index.css"
+import 'dotenv';
 
 const router = createBrowserRouter([
   {
@@ -73,7 +75,11 @@ const router = createBrowserRouter([
       {
         path: '/view-messages',
         element: <ViewMessages/>
-      }
+      },
+      {
+        path: '/translate',
+        element: <Translator/>
+      },
     ]
   },
 ])

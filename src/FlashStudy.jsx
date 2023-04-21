@@ -6,6 +6,7 @@ import Container from '@cloudscape-design/components/container';
 import Form from '@cloudscape-design/components/form';
 import FormField from '@cloudscape-design/components/form-field';
 import Header from '@cloudscape-design/components/header';
+import Icon from '@cloudscape-design/components/icon';
 import Input from '@cloudscape-design/components/input';
 import Link from '@cloudscape-design/components/link';
 import Select from '@cloudscape-design/components/select';
@@ -21,10 +22,11 @@ export default function FlashStudy() {
       header={
         <Header
           variant="h1"
+          description="Study Mode"
         >
           <FormattedMessage
             id="flashStudy.header"
-            defaultMessage="Study Mode"
+            defaultMessage="Flashcard collection"
             description=""
           />
         </Header>
@@ -33,11 +35,41 @@ export default function FlashStudy() {
       <SpaceBetween direction="vertical" size="m">
         <Container
           header={
-            <Header variant="h2">
-              Flashcard Collection
+            <Header variant="h4">
+              Question
             </Header>
           }
         ></Container>
+        <Container
+          header={
+            <Header variant="h4">
+              Answer
+            </Header>
+          }
+        ></Container>
+        <Container>
+          <SpaceBetween direction="horizontal" size="s">
+            <Button>
+              <Icon name="angle-left" size="large"/>
+            </Button>
+              <SpaceBetween direction="vertical" size="xs">
+                <Button
+                  variant="primary"
+                >
+                  REVEAL
+                </Button>
+                <Button>
+                  Got it!
+                </Button>
+                <Button>
+                  Not this time...
+                </Button>
+              </SpaceBetween>
+            <Button>
+              <Icon name="angle-right" size="large"/>
+            </Button>
+          </SpaceBetween>
+        </Container>
       </SpaceBetween>
     </Container>
   );

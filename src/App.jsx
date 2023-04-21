@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext, createContext, useCallback } from 'react';
 // import { applyMode, applyDensity, Density, Mode } from '@cloudscape-design/global-styles';
+window.global = window;
 import AppLayout from '@cloudscape-design/components/app-layout';
 import Autosuggest from '@cloudscape-design/components/autosuggest';
 import ContentLayout from '@cloudscape-design/components/content-layout';
 import Input from '@cloudscape-design/components/input';
+import Select from '@cloudscape-design/components/select';
 import SideNavigation from '@cloudscape-design/components/side-navigation';
 import TopNavigation from '@cloudscape-design/components/top-navigation';
 import { Outlet } from 'react-router-dom';
@@ -16,6 +18,7 @@ import {
 import MainHelpPanel from './MainHelpPanel';
 import MainOutlet from './MainOutlet';
 import en from './localization/en.json';
+import messages_en_US from './localization/en-US.json';
 import messages_he from './localization/he.json';
 import messages_ru from './localization/ru.json';
 import messages_vi from './localization/vi.json';
@@ -23,13 +26,15 @@ import messages_zh_TW from './localization/zh-TW.json';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 
 const messages = {
+  'en': en,
+  'en-US': messages_en_US,
   'he': messages_he,
   'ru': messages_ru,
   'vi': messages_vi,
   'zh-TW': messages_zh_TW,
 }
-// const language = navigator.language.split(/[-_]/)[0];
-const language = 'he';
+const language = navigator.language.split(/[-_]/)[0];
+// const language = 'he';
 
 // const AppContext = createContext();
 const values = {};
@@ -40,6 +45,7 @@ function App() {
   const [prefLang, setPrefLang] = useState('');
   values.prefLang = prefLang;
   const [langTexts, setLangTexts] = useState({});
+  const [selectedLang, setSelectedLang] = useState(language);
   values.langTexts = langTexts;
   const localize = (text) => {
     return langTexts[text];
@@ -147,6 +153,17 @@ function App() {
     }
   }, [window.navigator.language]);
 
+  const handleLanguageAutosuggest = (val) => {
+    const languagesObj = {
+      'zh-TW': 'Chinese (Traditional)',
+      en: 'English',
+      he: 'Hebrew',
+      ru: 'Russian',
+      vi: 'Vietnamese',
+    };
+    return `Using ${languagesObj[val]}`;
+  };
+
   useEffect(() => {
     setPath(window.location.href);
   }, [window.location.href]);
@@ -161,9 +178,39 @@ function App() {
               utilities={topNavUtilitiesProps}
               i18nStrings={topNavi18nStringsProps}
               search={
-                <Autosuggest
-                  onChange={({ detail }) => setLangVal(detail.value)}
-                  value={langVal}
+                // <Autosuggest
+                //   onChange={({ detail }) => setLangVal(detail.value)}
+                //   value={langVal}
+                  // options={[
+                  //   { label: "Arabic", value: "ar" },
+                  //   { label: "Chinese (CN)", value: "zh" },
+                  //   { label: "Chinese (TW)", value: "zh-TW" },
+                  //   { label: "English", value: "en" },
+                  //   { label: "French", value: "fr" },
+                  //   { label: "German", value: "de" },
+                  //   { label: "Greek", value: "el" },
+                  //   { label: "Hebrew", value: "he" },
+                  //   { label: "Hindi", value: "hi" },
+                  //   { label: "Italian", value: "it" },
+                  //   { label: "Japanese", value: "ja" },
+                  //   { label: "Korean", value: "ko" },
+                  //   { label: "Russian", value: "ru" },
+                  //   { label: "Spanish", value: "es" },
+                  //   { label: "Vietnamese", value: "vi" },
+                  // ]}
+                //   enteredTextLabel={handleLanguageAutosuggest}
+                //   ariaLabel="Autosuggest to pick site language"
+                //   placeholder={"Search for a language..."}
+                //   empty="No matches found..."
+                // />
+                <Select
+                  selectedOption={selectedLang}
+                  onChange={({ detail }) => {
+                    console.log('da fuck?')
+                    console.log(detail.selectedOption)
+                    setLangVal(detail.selectedOption.value)
+                    return;
+                  }}
                   options={[
                     { label: "Arabic", value: "ar" },
                     { label: "Chinese (CN)", value: "zh" },
@@ -181,10 +228,11 @@ function App() {
                     { label: "Spanish", value: "es" },
                     { label: "Vietnamese", value: "vi" },
                   ]}
-                  enteredTextLabel={val => `Use: ${val}`}
-                  ariaLabel="Autosuggest to pick site language"
-                  placeholder={"Search for a language..."}
-                  empty="No matches found..."
+                  placeholder="Choose a language bro"
+                  selectedAriaLabel="Selected"
+                  empty="No languages"
+                  loadingText="Loading languages"
+                  statusType="none"
                 />
               }
             />
@@ -370,6 +418,17 @@ function App() {
                       />
                     ),
                     href: '/dict'
+                  },
+                  {
+                    type: 'link',
+                    text: (
+                      <FormattedMessage
+                        id="app.sideNav.translate"
+                        defaultMessage="Translator"
+                        description=""
+                      />
+                    ),
+                    href: '/translate'
                   }
                 ]}
               />

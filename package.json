@@ -14,15 +14,17 @@
     "@cloudscape-design/components": "^3.0.196",
     "@cloudscape-design/global-styles": "^1.0.7",
     "an-array-of-english-words": "^2.0.0",
-    "aws-sdk": "^2.1313.0",
+    "aws-sdk": "^2.1359.0",
     "axios": "^1.3.3",
+    "dotenv": "^16.0.3",
     "javascript-time-ago": "^2.5.9",
     "latin-to-cyrillic": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intl": "^6.2.10",
     "react-router-dom": "^6.8.1",
-    "react-time-ago": "^7.2.1"
+    "react-time-ago": "^7.2.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
