@@ -129,19 +129,19 @@ export default function CreateCollection() {
   }, [langTexts]);
 
   const handleAddCard = () => {
-    // if (question === '' || answer === '') {
-    //   setIsValidated(false);
-    //   return;
-    // }
-    // const card = {
-    //   question,
-    //   answer,
-    // }
-    // console.log('CARD:');
-    // console.log(card);
-    // setCards((cards) => [...cards, card]);
-    // setQuestion('');
-    // setAnswer('');
+    if (question === '' || answer === '') {
+      setIsValidated(false);
+      return;
+    }
+    const card = {
+      question,
+      answer,
+    }
+    console.log('CARD:');
+    console.log(card);
+    setCards((cards) => [...cards, card]);
+    setQuestion('');
+    setAnswer('');
   };
 
   const handleCancelCollection = () => {
@@ -159,7 +159,7 @@ export default function CreateCollection() {
       name: collectionName,
       category: selectedCategory.label,
       cardList: cards,
-      username: 'mwintrowski-test',
+      username: 'iamwintrow10',
     };
     setCollection(collParams);
     console.log(collParams)

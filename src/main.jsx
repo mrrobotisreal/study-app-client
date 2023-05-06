@@ -19,8 +19,16 @@ import Dictionary from './Dictionary';
 import Translator from './Translator';
 import ViewFlashcardTimes from './ViewFlashcardTimes';
 import ViewMessages from './ViewMessages';
+import LoginPage from './LoginPage';
 import "@cloudscape-design/global-styles/index.css"
 import 'dotenv';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers/main-reducer.js';
+import { UserContextProvider } from './context/UserContext';
+
+export const store = createStore(reducer);
+const FlashcardsSubscription = store.subscribe(Flashcards);
 
 const router = createBrowserRouter([
   {
@@ -34,6 +42,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/app/collections/study',
+        element: <FlashStudy/>
+      },
+      {
+        path: '/app/collections/study/:name',
         element: <FlashStudy/>
       },
       {
@@ -82,8 +94,17 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: '/blah',
+    element: <LoginPage/>,
+    errorElement: <ErrorPage/>,
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />,
+  <UserContextProvider>
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
+  </UserContextProvider>
 )

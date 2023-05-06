@@ -39,7 +39,7 @@ function EmptyState({ title, subtitle, action }) {
 };
 
 
-export default function Flashcards() {
+export default function Flashcards({ store }) {
   const [filteringText, setFilteringText] = useState('');
   const [collections, setCollections] = useState([]);
   const [preferences, setPreferences] = useState({
@@ -132,7 +132,7 @@ export default function Flashcards() {
 
   const formatItems = (newItems) => {
     const formattedItems = [];
-    console.log()
+    console.log(newItems)
     for (let i = 0; i < newItems.length; i++) {
       const formattedItem = {
         created: i === 0 ? new Date(2022, 10, 5) : new Date(2022, 7, 18),
@@ -148,9 +148,15 @@ export default function Flashcards() {
   }
 
   const getitems = async () => {
-    const newItems = await useGetCollections('iamwintrow1');
-    console.log('NEW ITEMs ARE:');
-    console.log(newItems);
+    const newItems = await useGetCollections('iamwintrow10');
+    // store.dispatch({
+    //   type: 'setCardCollections',
+    //   cardCollections: newItems,
+    // });
+    // store.subscribe(() => {
+    //   console.log('State update:');
+    //   console.log(store.getState());
+    // });
     formatItems(newItems);
   }
 
@@ -185,6 +191,30 @@ export default function Flashcards() {
         // }}
         columnDefinitions={[
           {
+            id: "collection",
+            header: (
+              <FormattedMessage
+                id="flashcards.collectionNameColumn"
+                defaultMessage="Collection name"
+                description=""
+              />
+            ),
+            cell: e => <Link to={`/app/collections/study/${e.name}`}>{e.name}</Link>,
+            sortingField: "name"
+          },
+          {
+            id: "totalCards",
+            header: (
+              <FormattedMessage
+                id="flashcards.totalCardsColumn"
+                defaultMessage="Total cards"
+                description=""
+              />
+            ),
+            cell: e => e.totalCards,
+            sortingField: "totalCards",
+          },
+          {
             id: "created",
             header: (
               <FormattedMessage
@@ -207,30 +237,6 @@ export default function Flashcards() {
             ),
             cell: e => new Date(e.lastView).toDateString(),
             sortingField: "lastView",
-          },
-          {
-            id: "collection",
-            header: (
-              <FormattedMessage
-                id="flashcards.collectionNameColumn"
-                defaultMessage="Collection name"
-                description=""
-              />
-            ),
-            cell: e => <Link to={`/app/collections/${e.name}`}>{e.name}</Link>,
-            sortingField: "name"
-          },
-          {
-            id: "totalCards",
-            header: (
-              <FormattedMessage
-                id="flashcards.totalCardsColumn"
-                defaultMessage="Total cards"
-                description=""
-              />
-            ),
-            cell: e => e.totalCards,
-            sortingField: "totalCards",
           },
           {
             id: "category",

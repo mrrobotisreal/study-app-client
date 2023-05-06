@@ -9,12 +9,11 @@ export async function useGetCollections(user) {
     'Access-Control-Allow-Credentials': true,
   }
   let { data } = await axios.post('http://localhost:3333/app/collections', options, headers);
-  console.log('BIG FART!')
-  console.log(data);
-  for (let i = 0; i < data.length; i++) {
-    console.log('DATA[i]');
-    console.log(data[i]);
-  }
+  // for (let i = 0; i < data.length; i++) {
+  //   console.log('DATA[i]');
+  //   console.log(data[i]);
+  // }
+  // store
     // .then(({ data }) => {
     //   console.log('The data we received be like...\n\n');
     //   console.log(data);
