@@ -1,16 +1,21 @@
 import axios from 'axios';
 
-export const useCheckSession = (navigate) => {
-  const username = localStorage.getItem('lh:username:5173');
+export const useCheckSession = (username, setHasSession, setIsLoading) => {
+  // const username = localStorage.getItem('lh:username:5173');
   const token = localStorage.getItem('lh:user:5173');
+
+  if (!username || !token) {
+    setHasSession(false);
+    setIsLoading(false);
+    return;
+  }
 
   axios.post(`http://localhost:3333/session/${username}`, {
     token,
   })
     .then(({ data }) => {
-      if (!data) {
-        navigate('/blah');
-      }
+      setHasSession(() => !data ? false : true);
+      setIsLoading(false);
     })
     .catch((err) => console.error(err));
 };

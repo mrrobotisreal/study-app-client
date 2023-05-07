@@ -13,6 +13,7 @@
     "@cloudscape-design/collection-hooks": "^1.0.19",
     "@cloudscape-design/components": "^3.0.196",
     "@cloudscape-design/global-styles": "^1.0.7",
+    "@react-oauth/google": "^0.11.0",
     "an-array-of-english-words": "^2.0.0",
     "aws-sdk": "^2.1359.0",
     "axios": "^1.3.3",

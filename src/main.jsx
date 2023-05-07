@@ -5,6 +5,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import _App from './_App';
 import App from './App';
 import Chat from './Chat';
 import CreateCollection from './CreateCollection';
@@ -33,7 +35,7 @@ const FlashcardsSubscription = store.subscribe(Flashcards);
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <_App />,
     errorElement: <ErrorPage/>,
     children: [
       {
@@ -94,17 +96,19 @@ const router = createBrowserRouter([
       },
     ]
   },
-  {
-    path: '/blah',
-    element: <LoginPage/>,
-    errorElement: <ErrorPage/>,
-  }
-])
+  // {
+  //   path: '/blah',
+  //   element: <LoginPage/>,
+  //   errorElement: <ErrorPage/>,
+  // }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <UserContextProvider>
-    <Provider store={store}>
-        <RouterProvider router={router} />
-    </Provider>
-  </UserContextProvider>
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GCLIENT_ID}>
+    <UserContextProvider>
+      <Provider store={store}>
+          <RouterProvider router={router} />
+      </Provider>
+    </UserContextProvider>
+  </GoogleOAuthProvider>
 )

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 // export const UserContext = createContext({
 //   username: '',
@@ -15,6 +15,16 @@ export const UserContextProvider = ({ children }) => {
   const [email, setEmail] = useState('');
 
   const test = () => {}
+
+  useEffect(() => {
+    const storeUsername = setTimeout(() => {
+      if (username) {
+        localStorage.setItem('lh:username:5173', username);
+      }
+    }, 500);
+
+    return () => clearTimeout(storeUsername);
+  }, [username])
 
   const valueObj = {
     username,

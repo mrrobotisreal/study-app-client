@@ -11,19 +11,10 @@ import PropertyFilter from '@cloudscape-design/components/property-filter';
 import CollectionPreferences from "@cloudscape-design/components/collection-preferences";
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import { sampleFlashcardCollections } from './flashcardProps';
-// import EmptyState from './EmptyState';
-import { AppContext } from './AppContext';
 import { useGetCollections } from './hooks/useGetCollections';
 import CollectionHooksTable from './CollectionHooksTable';
 import { FormattedMessage } from 'react-intl';
 
-{/* <EmptyState
-          title={'No collections'}
-          subtitle={'There are no collections to display'}
-          actions={
-            <Button onClick={onCreateNewCollection}>Create collection</Button>
-          }
-        /> */}
 function EmptyState({ title, subtitle, action }) {
   return (
     <Box textAlign="center" color="inherit">
@@ -47,7 +38,6 @@ export default function Flashcards({ store }) {
     visibleContent: ['created', 'lastView', 'collection', 'totalCards', 'category', 'description'],
   });
   const navigate = useNavigate();
-  const { prefLang } = useContext(AppContext);
 
   const onCreateNewCollection = () => {
     navigate('/app/collections/new');
