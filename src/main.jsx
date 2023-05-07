@@ -28,6 +28,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers/main-reducer.js';
 import { UserContextProvider } from './context/UserContext';
+import { NotificationsContextProvider } from './context/NotificationsContext';
 
 export const store = createStore(reducer);
 const FlashcardsSubscription = store.subscribe(Flashcards);
@@ -105,10 +106,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GCLIENT_ID}>
-    <UserContextProvider>
-      <Provider store={store}>
-          <RouterProvider router={router} />
-      </Provider>
-    </UserContextProvider>
+    <NotificationsContextProvider>
+      <UserContextProvider>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+      </UserContextProvider>
+    </NotificationsContextProvider>
   </GoogleOAuthProvider>
 )

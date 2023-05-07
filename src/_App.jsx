@@ -35,6 +35,7 @@ import { useCheckSession } from './hooks/useCheckSession';
 import { useSaveUser } from './hooks/useSaveUser';
 import { useCheckLogin } from './hooks/useCheckLogin';
 import { UserContext } from './context/UserContext';
+import { NotificationsContext } from './context/NotificationsContext';
 import { useLogout } from './hooks/useLogout';
 import { useGetGoogleProfile } from './hooks/useGetGoogleProfile';
 import { useSetSession } from './hooks/useSetSession';
@@ -53,6 +54,7 @@ const language = navigator.language.split(/[-_]/)[0];
 
 function _App() {
   const { username, setUsername, email, setEmail, test } = useContext(UserContext);
+  const { notifications, setNotifications, addNotification, clearNotification } = useContext(NotificationsContext);
   let storedUsername = localStorage.getItem('lh:username:5173');
   if (!storedUsername) {
     storedUsername = '';
@@ -90,14 +92,19 @@ function _App() {
         password,
         setIsAuthenticated,
         setIsLoadingSubmit,
+        addNotification,
+        clearNotification,
       });
     } else {
       useSaveUser({
         email,
         username,
         password,
+        setIsAuthenticated,
+        setIsLoadingSubmit,
+        addNotification,
+        clearNotification,
       });
-      setIsAuthenticated(true);
     }
     setEmail('');
     setUsername('');
@@ -114,7 +121,7 @@ function _App() {
     setIsPasswordVisible(!isPasswordVisible);
   };
   const getGoogleProfileReturns = (gUsername, options) => {
-    useSetSession(gUsername, options, setHasSession, setIsLoadingSubmit);
+    useSetSession(gUsername, options, setHasSession, setIsLoadingSubmit, addNotification, clearNotification);
     setUsername(gUsername);
     setEmail(options.email);
     setName(options.name);
@@ -151,7 +158,7 @@ function _App() {
         if (!storedUsername) {
           console.log('Nuttin bruh');
         } else {
-          useLogout(storedUsername, setHasSession);
+          useLogout(storedUsername, setHasSession, addNotification, clearNotification);
           setUsername('');
           setEmail('');
           setPassword('');
@@ -267,7 +274,7 @@ function _App() {
             >
               <AppLayout
                 notifications={
-                  <Notification/>
+                  <Flashbar items={notifications} />
                 }
                 navigationHide={!hasSession}
                 navigation={
