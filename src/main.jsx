@@ -22,6 +22,8 @@ import Translator from './Translator';
 import ViewFlashcardTimes from './ViewFlashcardTimes';
 import ViewMessages from './ViewMessages';
 import LoginPage from './LoginPage';
+import TextsTable from './TextsTable';
+import TextReader from './TextReader';
 import "@cloudscape-design/global-styles/index.css"
 import 'dotenv';
 import { createStore } from 'redux';
@@ -95,6 +97,14 @@ const router = createBrowserRouter([
         path: '/translate',
         element: <Translator/>
       },
+      {
+        path: '/texts-table',
+        element: <TextsTable/>
+      },
+      {
+        path: '/texts/:text',
+        element: <TextReader/>
+      }
     ]
   },
   // {

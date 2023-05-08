@@ -450,6 +450,17 @@ function _App() {
                         type: 'link',
                         text: (
                           <FormattedMessage
+                            id="add.sideNav.Texts"
+                            defaultMessage="Texts"
+                            description=""
+                          />
+                        ),
+                        href: '/texts-table',
+                      },
+                      {
+                        type: 'link',
+                        text: (
+                          <FormattedMessage
                             id="app.sideNav.dict"
                             defaultMessage="Dictionary"
                             description=""
