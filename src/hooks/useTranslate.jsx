@@ -4,8 +4,8 @@ import AWS from 'aws-sdk';
 const REGION = 'us-west-2';
 AWS.config.update({
   region: REGION,
-  accessKeyId: 'AKIASYYXEDOSWM3TPH4M',
-  secretAccessKey: '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',
+  accessKeyId: import.meta.env.VITE_AWS_ACCOUNT,
+  secretAccessKey: import.meta.env.VITE_AWS_SECRET,
 });
 const translate = new AWS.Translate();
 
