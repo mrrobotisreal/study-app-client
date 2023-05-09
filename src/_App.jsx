@@ -36,10 +36,12 @@ import { useSaveUser } from './hooks/useSaveUser';
 import { useCheckLogin } from './hooks/useCheckLogin';
 import { UserContext } from './context/UserContext';
 import { NotificationsContext } from './context/NotificationsContext';
+import { ScoresContext } from './context/ScoresContext';
 import { useLogout } from './hooks/useLogout';
 import { useGetGoogleProfile } from './hooks/useGetGoogleProfile';
 import { useSetSession } from './hooks/useSetSession';
 import GoogleButton from './GoogleButton';
+import Confetti from 'react-confetti';
 
 const messages = {
   'en': en,
@@ -55,6 +57,7 @@ const language = navigator.language.split(/[-_]/)[0];
 function _App() {
   const { username, setUsername, email, setEmail, test } = useContext(UserContext);
   const { notifications, setNotifications, addNotification, clearNotification } = useContext(NotificationsContext);
+  const { hasBeatenHighScore } = useContext(ScoresContext);
   let storedUsername = localStorage.getItem('lh:username:5173');
   if (!storedUsername) {
     storedUsername = '';
@@ -483,7 +486,15 @@ function _App() {
                   />
                 }
                 content={hasSession
-                  ? <MainOutlet path={path}/>
+                  ? (
+                    <>
+                      <MainOutlet path={path}/>
+                      {hasBeatenHighScore
+                        ? <Confetti width={window.innerWidth} height={window.innerHeight} />
+                        : null
+                      }
+                    </>
+                  )
                   : (
                     <>
                       {
@@ -576,6 +587,7 @@ function _App() {
                 toolsHide={!hasSession}
                 tools={<MainHelpPanel/>}
               />
+              {/* <Confetti width={window.innerWidth} height={window.innerHeight} /> */}
             </ContentLayout>
           ) : (
             <Spinner size="large" />

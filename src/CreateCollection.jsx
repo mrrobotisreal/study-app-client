@@ -13,7 +13,6 @@ import Link from '@cloudscape-design/components/link';
 import Select from '@cloudscape-design/components/select';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import TextArea from '@cloudscape-design/components/textarea';
-import { AppContext } from './AppContext';
 import AudioRecorder from './AudioRecorder';
 import { FormattedMessage } from 'react-intl';
 
@@ -102,31 +101,7 @@ export default function CreateCollection() {
   const [isValidated, setIsValidated] = useState(true);
   const [textAreaText, setTextAreaText] = useState('');
   const navigate = useNavigate();
-  const { prefLang, langTexts, localize } = useContext(AppContext);
-  // text lang state
   const [createCollectionHeader, setCreateCollectionHeader] = useState('Create a new collection');
-
-  useEffect(() => {
-    console.log('updating...');
-    console.log(langTexts['create-collection-header']);
-    console.log('AFTER');
-    // const interval = setInterval(async () => {
-    //   console.log('INTERVAL');
-    //   console.log('-----------------------------------------------------');
-    //   console.log('CREATE COLLECTION HEADER');
-    //   console.log(langTexts['create-collection-header']);
-    //   console.log('MAIN MENU');
-    //   console.log(langTexts['main-menu']);
-    //   await setCreateCollectionHeader(langTexts['create-collection-header']);
-    // }, [1000]);
-    // return () => {
-    //   clearInterval(interval);
-    // }
-  }, []);
-
-  useEffect(() => {
-    setCreateCollectionHeader(langTexts['create-collection-header']);
-  }, [langTexts]);
 
   const handleAddCard = () => {
     if (question === '' || answer === '') {
@@ -155,16 +130,16 @@ export default function CreateCollection() {
     //   setIsValidated(false);
     //   return;
     // }
+    const storedUser = localStorage.getItem('lh:username:5173');
     let collParams = {
       name: collectionName,
       category: selectedCategory.label,
       cardList: cards,
-      username: 'iamwintrow10',
+      username: storedUser,
     };
     setCollection(collParams);
     console.log(collParams)
     console.log('COLLECTION');
-    console.log(localize('main-menu'));
     useSaveCollection(collParams);
     // axios.get('http://localhost:3333/app/collections/i/am/fart/v2')
     //   .then(({ data }) => {

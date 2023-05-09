@@ -12,7 +12,7 @@ export const CollectionContextProvider = ({ children }) => {
   const [colls, setColls] = useState(initialColls);
   const [selectedColl, _setSelectedColl] = useState('');
 
-  const getUserCollections = async (user = 'iamwintrow10') => {
+  const getUserCollections = async (user) => {
     let options = {
       user,
     }
@@ -25,7 +25,12 @@ export const CollectionContextProvider = ({ children }) => {
   };
 
   const refreshCollections = () => {
-    getUserCollections();
+    const storedUsername = localStorage.getItem('lh:username:5173');
+    if (!storedUsername) {
+      console.log('no stored user');
+      return;
+    }
+    getUserCollections(storedUsername);
   };
 
   const setSelectedColl = (name) => {
@@ -36,7 +41,12 @@ export const CollectionContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getUserCollections();
+    const storedUsername = localStorage.getItem('lh:username:5173');
+    if (!storedUsername) {
+      console.log('no stored user');
+      return;
+    }
+    getUserCollections(storedUsername);
   }, [])
 
   const valueObj = {

@@ -21,6 +21,7 @@
     "javascript-time-ago": "^2.5.9",
     "latin-to-cyrillic": "^1.0.1",
     "react": "^18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-intl": "^6.2.10",
     "react-redux": "^8.0.5",

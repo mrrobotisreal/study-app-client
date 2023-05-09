@@ -138,7 +138,8 @@ export default function Flashcards({ store }) {
   }
 
   const getitems = async () => {
-    const newItems = await useGetCollections('iamwintrow10');
+    const storedUser = localStorage.getItem('lh:username:5173');
+    const newItems = await useGetCollections(storedUser);
     // store.dispatch({
     //   type: 'setCardCollections',
     //   cardCollections: newItems,
