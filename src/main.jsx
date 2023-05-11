@@ -32,6 +32,7 @@ import reducer from './reducers/main-reducer.js';
 import { UserContextProvider } from './context/UserContext';
 import { NotificationsContextProvider } from './context/NotificationsContext';
 import { ScoresContextProvider } from './context/ScoresContext';
+import { TextsContextProvider } from './context/TextsContext';
 
 export const store = createStore(reducer);
 const FlashcardsSubscription = store.subscribe(Flashcards);
@@ -117,14 +118,16 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GCLIENT_ID}>
-    <ScoresContextProvider>
-      <NotificationsContextProvider>
-        <UserContextProvider>
-          <Provider store={store}>
-              <RouterProvider router={router} />
-          </Provider>
-        </UserContextProvider>
-      </NotificationsContextProvider>
-    </ScoresContextProvider>
+    <TextsContextProvider>
+      <ScoresContextProvider>
+        <NotificationsContextProvider>
+          <UserContextProvider>
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
+          </UserContextProvider>
+        </NotificationsContextProvider>
+      </ScoresContextProvider>
+    </TextsContextProvider>
   </GoogleOAuthProvider>
 )

@@ -1,11 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
-import 'dotenv';
 import AWS from 'aws-sdk';
-const REGION = 'us-west-2';
 AWS.config.update({
-  region: REGION,
-  accessKeyId: import.meta.env.VITE_AWS_ACCOUNT,
-  secretAccessKey: import.meta.env.VITE_AWS_SECRET,
+  region: import.meta.env.VITE_AWS_REGION,
+  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
+  secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
 });
 const translate = new AWS.Translate();
 
@@ -27,7 +25,7 @@ export default function useTranslate() {
     };
     let translateTextResponse;
     try {
-      // translateTextResponse = await translate.translateText(params).promise();
+      translateTextResponse = await translate.translateText(params).promise();
       await translate.translateText(params, (err, data) => {
         if (err) console.log(err, err.stack);
         else {
@@ -45,7 +43,8 @@ export default function useTranslate() {
         console.log('ERROR ERROR ERROR')
         setTranslatedText('ERROR: Unable to translate text at this time.');
       } else {
-        console.log('NO ERROR')
+        console.log('NO ERROR');
+        return translateTextResponse;
       }
     }
   }, []);

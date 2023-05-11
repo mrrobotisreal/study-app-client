@@ -75,6 +75,7 @@ export default function Translator() {
   const [targetLang, setTargetLang] = useState(null);
   // const [targetLangText, setTargetLangText] = useState(null);
   const [textToBeTranslated, setTextToBeTranslated] = useState('');
+  const [sourceText, setSourceText] = useState('');
   const [isFormal, setIsFormal] = useState(false);
   const [allowProfanity, setAllowProfanity] = useState(false);
   const { translatedText, translateText } = useTranslate();
@@ -91,7 +92,9 @@ export default function Translator() {
 
   const handleTranslateText = () => {
     console.log('Will fire off to Amazon Translate');
+    setSourceText(textToBeTranslated);
     translateText(textToBeTranslated, sourceLang.value, targetLang.value);
+    setTextToBeTranslated('');
     // translateText(textToBeTranslated, 'en', 'vi')
   };
 
@@ -282,7 +285,7 @@ export default function Translator() {
                 <Box
                   varaint="p"
                 >
-                  {textToBeTranslated}
+                  {sourceText}
                 </Box>
               </Container>
               <Container>

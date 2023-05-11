@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Container from '@cloudscape-design/components/container';
 import Header from '@cloudscape-design/components/header';
 import Spinner from '@cloudscape-design/components/spinner';
+import { TextsContext } from './context/TextsContext';
 
 const regex = /([\,\.\!\?\s])+/;
 
@@ -13,6 +14,7 @@ export default function TextReader() {
   const [textWords, setTextWords] = useState([]);
   const [vocabWords, setVocabWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { selectedText, addToDictionary, dictionary } = useContext(TextsContext);
 
   const handleWordClick = (e) => {
     console.log(e.target.textContent);
@@ -65,12 +67,21 @@ export default function TextReader() {
   };
 
   useEffect(() => {
-    formatText(sampleText);
+    // formatText(sampleText);
+    formatText(selectedText.text);
   }, [])
 
   useEffect(() => {
     console.log('usin dat effect>\n', vocabWords);
+    vocabWords.forEach((word) => {
+      console.log('>> ', word);
+      addToDictionary(word);
+    })
   }, [vocabWords])
+
+  useEffect(() => {
+    console.log('[DICTIONARY] - ', dictionary)
+  }, [dictionary])
 
   return (
     <Container
