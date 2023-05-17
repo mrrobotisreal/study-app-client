@@ -481,6 +481,11 @@ function _App() {
                           />
                         ),
                         href: '/translate'
+                      },
+                      {
+                        type: 'link',
+                        text: 'Custom',
+                        href: '/custom',
                       }
                     ]}
                   />

@@ -249,11 +249,20 @@ export default function FlashStudy() {
             <Header
               variant="h1"
               description="Study Mode"
-              counter={`${currentIndex + 1}/${cardList.length} - Card ${currentIndex + 1} ${
-                answerObj[String(currentIndex)] === true
-                ? 'has been answered ✅.'
-                : 'has not been answered yet ❌.'
-              }`}
+              counter={
+                <FormattedMessage
+                  id="flashStudy.container.header.counter"
+                  defaultMessage="{curIdx}/{len} - Card {curIdx} {isAnswered}."
+                  values={{
+                    curIdx: currentIndex + 1,
+                    len: cardList.length,
+                    isAnswered: answerObj[String(currentIndex)] === true
+                    ? 'has been answered ✅'
+                    : 'has not been answered yet ❌',
+                  }}
+                  description=""
+                />
+              }
               actions={
                 <SpaceBetween direction="horizontal" size="s">
                   <Button

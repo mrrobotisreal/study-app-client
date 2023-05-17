@@ -24,6 +24,7 @@ import ViewMessages from './ViewMessages';
 import LoginPage from './LoginPage';
 import TextsTable from './TextsTable';
 import TextReader from './TextReader';
+import Custom from './Custom';
 import "@cloudscape-design/global-styles/index.css"
 import 'dotenv';
 import { createStore } from 'redux';
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: '/texts/:text',
         element: <TextReader/>
+      },
+      {
+        path: '/custom',
+        element: <Custom/>
       }
     ]
   },
